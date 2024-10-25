@@ -73,12 +73,8 @@ namespace MCGalaxy
                 public static void SpawnPlayers() {
                  
                  foreach(Player pl in PlayerInfo.Online.Items) {
-           
                   PlayerActions.Respawn(pl);
-
                  }
- 
-
                  }
 
 
@@ -107,9 +103,14 @@ namespace MCGalaxy
                 }
                 
                 public static void StopGame(Player p) {
-                 winner = null;
+		 
+                 if (!GameStarted) { p.Message(GameName + " Game is not running."); }
+                 GameStarted = false;
+		 winner = null;
                  GameLevel = null;
-                 EndGame(p);
+                 
+                 foreach(Player pl in PlayerInfo.Online.Items) { if (winner == null) { pl.Message("Nobody wins this round!"); } pl.Message(GameName + " Game Ends!"); }
+                 
 
                 }
 
