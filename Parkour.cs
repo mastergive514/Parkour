@@ -214,10 +214,11 @@ namespace MCGalaxy
     {
         public override string name { get { return "Parkour"; } }
         public override string type { get { return CommandTypes.Economy; } }
-        public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
-
+        public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
+        
         public override void Use(Player p, string message, CommandData data)
         {
+
           string[] args = message.SplitSpaces();
           if (args[0] == "start") { StartGame(p); }
           else if (args[0] == "stop") { StopGame(p); }
@@ -235,7 +236,7 @@ namespace MCGalaxy
 
         public override void Help(Player p)
         {
-            p.Message("%T/Parkour");
+            p.Message("%T/Parkour %e- Parkour MiniGame");
             p.Message("%a/Parkour Start %e- Starts " + GameName + " MiniGame.");
             p.Message("%a/Parkour End %e- Ends Round of " + GameName + " MiniGame.");
             p.Message("%a/Parkour Stop %e- Stops " + GameName + " MiniGame.");
